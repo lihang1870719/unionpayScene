@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>unionpayScene</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <script src="./js/lib/three.js/build/three.js"></script>
+    <script src="./js/lib/three.js/examples/js/libs/stats.min.js"></script>
+    <!-- 这里增加你用到的threejs -->
+    <script src="./js/core/seed.js"></script>
+    <style type="text/css">
+        html,body{
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        * {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+</body>
+
+<script>
+    function startWorker(){
+        process.add([drawGround, drawSky, transformCamera]);
+    }
+
+    function start() {
+        //首先加载自己的js
+        process.load('js/core/define.js')
+                .load('js/core/motion.js')
+                .load('js/core/app.js')
+                .load('js/core/sky.js')
+                .load('js/core/ground.js')
+                .load('js/core/transformCamera.js');
+
+        var mesh, group;
+        setTimeout(function(){
+            container = document.body;
+            initGlobal();
+            bindMotion();
+            startWorker();
+        }, 1000)
+    }
+
+    window.onload = start;
+
+</script>
+</html>
